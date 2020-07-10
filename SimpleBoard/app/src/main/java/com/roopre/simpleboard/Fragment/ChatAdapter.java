@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.roopre.simpleboard.ChatMsgVO;
-import com.roopre.simpleboard.Fragment.dummy.DummyContent.DummyItem;
 import com.roopre.simpleboard.Public.Se_Application;
 import com.roopre.simpleboard.R;
 

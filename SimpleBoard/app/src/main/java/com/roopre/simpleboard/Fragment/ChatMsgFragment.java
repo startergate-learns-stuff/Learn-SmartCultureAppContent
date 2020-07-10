@@ -3,6 +3,8 @@ package com.roopre.simpleboard.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,18 +26,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.roopre.simpleboard.ChatMsgVO;
 import com.roopre.simpleboard.Public.Se_Application;
 import com.roopre.simpleboard.R;
-import com.roopre.simpleboard.Fragment.dummy.DummyContent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- */
 public class ChatMsgFragment extends Fragment implements View.OnClickListener {
 
+    // 로그용 TAG
     private final String TAG = getClass().getSimpleName();
 
     // 채팅을 입력할 입력창과 전송 버튼
@@ -61,15 +60,15 @@ public class ChatMsgFragment extends Fragment implements View.OnClickListener {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ChatMsgFragment newInstance(int columnCount) {
+    public static ChatMsgFragment newInstance() {
         ChatMsgFragment fragment = new ChatMsgFragment();
-
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -91,7 +90,7 @@ public class ChatMsgFragment extends Fragment implements View.OnClickListener {
         rv.setAdapter(mAdapter);
 
         // Firebase Database 초기
-        myRef = database.getReference(chatroom);
+        myRef = database.getReference().child(chatroom);
 
         // Firebase Database Listener 붙이기
         myRef.addChildEventListener(new ChildEventListener() {
