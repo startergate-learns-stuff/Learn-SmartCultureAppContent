@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "727565379400",
+    "firebase_url": "https://chattest-83109.firebaseio.com",
+    "project_id": "chattest-83109",
+    "storage_bucket": "chattest-83109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727565379400:android:cf002478dcab48f016f57d",
+        "android_client_info": {
+          "package_name": "com.roopre.simpleboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727565379400-ddhqmmuhbvejmgna8aapmtft6hpcmna9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl9wth51RGAy8rsGu2VKWyOwq5BG9x5Y4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727565379400-ddhqmmuhbvejmgna8aapmtft6hpcmna9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

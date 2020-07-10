@@ -91,7 +91,7 @@ public class LoginFragment extends Fragment implements CompoundButton.OnCheckedC
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()){
+        switch(buttonView.getId()){
             case R.id.auto_chk:
                 if(isChecked){
                     Se_Application.Localdb.set_dataB("auto_chk", true);
@@ -109,17 +109,8 @@ public class LoginFragment extends Fragment implements CompoundButton.OnCheckedC
         switch(v.getId()){
             case R.id.login_btn:
                 if(CheckValid()){
-
+                    // 입력이 정상적이면 로그인 확인하고 MainFragment 로 이동
                     new LoginTask().execute();
-
-                    // 이동할 Fragment 선언
-                    MainFragment mainFragment = new MainFragment();
-
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                            .replace(R.id.mainFragment, mainFragment, "MAIN")
-                            .addToBackStack(null)
-                            .commit();
                 }
                 break;
             case R.id.join_btn:
@@ -132,6 +123,20 @@ public class LoginFragment extends Fragment implements CompoundButton.OnCheckedC
                 break;
         }
     }
+
+    private boolean CheckValid(){
+        if(userid_et.getText().toString().trim().length() < 5){
+            Toast.makeText(getActivity(), "이메일을 입력하세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(passwd_et.getText().toString().trim().length() < 4){
+            Toast.makeText(getActivity(), "비밀번호를 4자 이상 입력하세요", Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+
 
     class LoginTask extends AsyncTask<String, Void, String> {
 
@@ -169,24 +174,18 @@ public class LoginFragment extends Fragment implements CompoundButton.OnCheckedC
 
             Log.d(TAG, s);
             if(s.contains("success")){
+                // 이동할 Fragment 선언
                 Se_Application.Localdb.set_dataS("userid", userid_et.getText().toString().trim());
                 Se_Application.Localdb.set_dataS("passwd", passwd_et.getText().toString().trim());
+                Se_Application.Localdb.set_dataB("login", true);
 
-                ((MainActivity)getActivity()).onBackStackChanged();
+                MainFragment mainFragment = new MainFragment();
+
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
+                        .replace(R.id.mainFragment, mainFragment, "MAIN")
+                        .commit();
             }
         }
     }
-
-    private boolean CheckValid(){
-        if(userid_et.getText().toString().trim().length() < 5){
-            Toast.makeText(getActivity(), "이메일을 입력하세요", Toast.LENGTH_SHORT).show();
-            return false;
-        }else if(passwd_et.getText().toString().trim().length() < 6){
-            Toast.makeText(getActivity(), "비밀번호를 6자 이상 입력하세요", Toast.LENGTH_SHORT).show();
-            return false;
-        }else {
-            return true;
-        }
-    }
-
 }

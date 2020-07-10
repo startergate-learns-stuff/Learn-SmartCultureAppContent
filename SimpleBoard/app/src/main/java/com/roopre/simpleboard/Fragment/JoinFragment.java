@@ -75,14 +75,6 @@ public class JoinFragment extends Fragment implements View.OnClickListener {
                     // 입력이 정상적이면 로그인 확인하고 MainFragment 로 이동
                     new JoinTask().execute();
 
-                    // 이동할 Fragment 선언
-                    MainFragment mainFragment = new MainFragment();
-
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .setCustomAnimations(R.anim.slide_in_right, R.anim.slide_out_left, R.anim.slide_in_left, R.anim.slide_out_right)
-                            .replace(R.id.mainFragment, mainFragment, "MAIN")
-                            .addToBackStack(null)
-                            .commit();
                 }
                 break;
         }
